@@ -33,6 +33,7 @@
 	} 
 	return [super performKeyEquivalent:event]; 
 	}
+    return 0;
 }
 
 @end

@@ -5,13 +5,13 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>7B2BAF09-469F-4D74-9E65-5ACAF9E5C217</string>
+	<string>9F67D9B3-579C-431B-B475-678348036B7D</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MenuBrain</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>582B6DBD1C0F07E07E936CD6FD58A17F22DEFF21</key>
-		<string>https://github.com/iconmaster/menubrain.git</string>
+		<string>https://github.com/iconmaster/menubrain</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MenuBrain.xcodeproj</string>
@@ -21,7 +21,7 @@
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/iconmaster/menubrain.git</string>
+	<string>https://github.com/iconmaster/menubrain</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>582B6DBD1C0F07E07E936CD6FD58A17F22DEFF21</string>
 			<key>IDESourceControlWCCName</key>
-			<string>menubrain</string>
+			<string>MenuBrain</string>
 		</dict>
 	</array>
 </dict>

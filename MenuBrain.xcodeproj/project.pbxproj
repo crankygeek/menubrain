@@ -7,264 +7,239 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58280DA1D0D100B32029 /* MyDocument.xib */; };
-		5409EA3610A3CA210002EFB6 /* MenuBrainAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5409EA3510A3CA210002EFB6 /* MenuBrainAppDelegate.m */; };
-		5409EA3F10A3CA2E0002EFB6 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5409EA3E10A3CA2E0002EFB6 /* AppController.m */; };
-		5409EA4510A3CAB10002EFB6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5409EA4310A3CAB10002EFB6 /* MainMenu.xib */; };
-		542CD64919E88BAF006CAC7E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 542CD64819E88BAF006CAC7E /* Images.xcassets */; };
-		54BBF00710A6615100080778 /* AXCVHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 54BBF00610A6615100080778 /* AXCVHandler.m */; };
-		54D6321110A9CE3500E6C734 /* brain-menulet_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D6320F10A9CE3500E6C734 /* brain-menulet_on.png */; };
-		54D6321210A9CE3500E6C734 /* brain-menulet.png in Resources */ = {isa = PBXBuildFile; fileRef = 54D6321010A9CE3500E6C734 /* brain-menulet.png */; };
-		54E82C4810AF5E8F00BF6AFD /* MenuBrain.icns in Resources */ = {isa = PBXBuildFile; fileRef = 54E82C4710AF5E8F00BF6AFD /* MenuBrain.icns */; };
-		54F7026115A0DBC70095C875 /* brain-menulet_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F7025F15A0DBC70095C875 /* brain-menulet_on@2x.png */; };
-		54F7026215A0DBC70095C875 /* brain-menulet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F7026015A0DBC70095C875 /* brain-menulet@2x.png */; };
-		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
-		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
-		8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */; settings = {ATTRIBUTES = (); }; };
-		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		5454B4111B6B0E4A00C15DDB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454B4101B6B0E4A00C15DDB /* AppDelegate.swift */; };
+		5454B4131B6B0E4A00C15DDB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5454B4121B6B0E4A00C15DDB /* Images.xcassets */; };
+		5454B4161B6B0E4A00C15DDB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5454B4141B6B0E4A00C15DDB /* MainMenu.xib */; };
+		5454B4221B6B0E4A00C15DDB /* MenuBrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454B4211B6B0E4A00C15DDB /* MenuBrainTests.swift */; };
+		5454B42E1B6B100D00C15DDB /* AXCVHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5454B42D1B6B100D00C15DDB /* AXCVHandler.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5454B41C1B6B0E4A00C15DDB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5454B4031B6B0E4A00C15DDB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5454B40A1B6B0E4A00C15DDB;
+			remoteInfo = MenuBrain;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		13E42FBA07B3F13500E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		1DDD58290DA1D0D100B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MyDocument.xib; sourceTree = "<group>"; };
-		2564AD2C0F5327BB00F57823 /* MenuBrain_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuBrain_Prefix.pch; sourceTree = "<group>"; };
-		2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
-		2A37F4AEFDCFA73011CA2CEA /* MyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
-		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
-		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		5409EA3410A3CA210002EFB6 /* MenuBrainAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuBrainAppDelegate.h; sourceTree = "<group>"; };
-		5409EA3510A3CA210002EFB6 /* MenuBrainAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuBrainAppDelegate.m; sourceTree = "<group>"; };
-		5409EA3D10A3CA2E0002EFB6 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
-		5409EA3E10A3CA2E0002EFB6 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
-		5409EA4410A3CAB10002EFB6 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		542CD64819E88BAF006CAC7E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = MenuBrain/Images.xcassets; sourceTree = "<group>"; };
-		54BBF00510A6615100080778 /* AXCVHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXCVHandler.h; sourceTree = "<group>"; };
-		54BBF00610A6615100080778 /* AXCVHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXCVHandler.m; sourceTree = "<group>"; };
-		54D6320F10A9CE3500E6C734 /* brain-menulet_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brain-menulet_on.png"; sourceTree = "<group>"; };
-		54D6321010A9CE3500E6C734 /* brain-menulet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brain-menulet.png"; sourceTree = "<group>"; };
-		54E82C4710AF5E8F00BF6AFD /* MenuBrain.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MenuBrain.icns; sourceTree = "<group>"; };
-		54F7025F15A0DBC70095C875 /* brain-menulet_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brain-menulet_on@2x.png"; sourceTree = "<group>"; };
-		54F7026015A0DBC70095C875 /* brain-menulet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brain-menulet@2x.png"; sourceTree = "<group>"; };
-		5F9F922515A0BDBA00297A1E /* MenuBrain-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MenuBrain-Info.plist"; sourceTree = "<group>"; };
-		8D15AC370486D014006FF6A4 /* MenuBrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuBrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5454B40B1B6B0E4A00C15DDB /* MenuBrain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MenuBrain.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5454B40F1B6B0E4A00C15DDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5454B4101B6B0E4A00C15DDB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5454B4121B6B0E4A00C15DDB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		5454B4151B6B0E4A00C15DDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		5454B41B1B6B0E4A00C15DDB /* MenuBrainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MenuBrainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5454B4201B6B0E4A00C15DDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5454B4211B6B0E4A00C15DDB /* MenuBrainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBrainTests.swift; sourceTree = "<group>"; };
+		5454B42B1B6B100C00C15DDB /* MenuBrain-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MenuBrain-Bridging-Header.h"; sourceTree = "<group>"; };
+		5454B42C1B6B100D00C15DDB /* AXCVHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AXCVHandler.h; sourceTree = "<group>"; };
+		5454B42D1B6B100D00C15DDB /* AXCVHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AXCVHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8D15AC330486D014006FF6A4 /* Frameworks */ = {
+		5454B4081B6B0E4A00C15DDB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5454B4181B6B0E4A00C15DDB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
+		5454B4021B6B0E4A00C15DDB = {
 			isa = PBXGroup;
 			children = (
-				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
+				5454B40D1B6B0E4A00C15DDB /* MenuBrain */,
+				5454B41E1B6B0E4A00C15DDB /* MenuBrainTests */,
+				5454B40C1B6B0E4A00C15DDB /* Products */,
 			);
-			name = "Linked Frameworks";
 			sourceTree = "<group>";
 		};
-		1058C7A8FEA54F5311CA2CBB /* Other Frameworks */ = {
+		5454B40C1B6B0E4A00C15DDB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
-				13E42FBA07B3F13500E4EEF1 /* CoreData.framework */,
-				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
-			sourceTree = "<group>";
-		};
-		19C28FB0FE9D524F11CA2CBB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8D15AC370486D014006FF6A4 /* MenuBrain.app */,
+				5454B40B1B6B0E4A00C15DDB /* MenuBrain.app */,
+				5454B41B1B6B0E4A00C15DDB /* MenuBrainTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2A37F4AAFDCFA73011CA2CEA /* MenuBrain */ = {
+		5454B40D1B6B0E4A00C15DDB /* MenuBrain */ = {
 			isa = PBXGroup;
 			children = (
-				5F9F922515A0BDBA00297A1E /* MenuBrain-Info.plist */,
-				5409EA3D10A3CA2E0002EFB6 /* AppController.h */,
-				5409EA3E10A3CA2E0002EFB6 /* AppController.m */,
-				54BBF00510A6615100080778 /* AXCVHandler.h */,
-				54BBF00610A6615100080778 /* AXCVHandler.m */,
-				2A37F4ABFDCFA73011CA2CEA /* Classes */,
-				2A37F4B8FDCFA73011CA2CEA /* Resources */,
-				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
-				19C28FB0FE9D524F11CA2CBB /* Products */,
-				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
+				5454B42C1B6B100D00C15DDB /* AXCVHandler.h */,
+				5454B42D1B6B100D00C15DDB /* AXCVHandler.m */,
+				5454B4101B6B0E4A00C15DDB /* AppDelegate.swift */,
+				5454B4121B6B0E4A00C15DDB /* Images.xcassets */,
+				5454B4141B6B0E4A00C15DDB /* MainMenu.xib */,
+				5454B40E1B6B0E4A00C15DDB /* Supporting Files */,
+				5454B42B1B6B100C00C15DDB /* MenuBrain-Bridging-Header.h */,
 			);
-			name = MenuBrain;
+			path = MenuBrain;
 			sourceTree = "<group>";
 		};
-		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
+		5454B40E1B6B0E4A00C15DDB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5409EA3410A3CA210002EFB6 /* MenuBrainAppDelegate.h */,
-				5409EA3510A3CA210002EFB6 /* MenuBrainAppDelegate.m */,
-				2A37F4AEFDCFA73011CA2CEA /* MyDocument.h */,
-				2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */,
+				5454B40F1B6B0E4A00C15DDB /* Info.plist */,
 			);
-			name = Classes;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
+		5454B41E1B6B0E4A00C15DDB /* MenuBrainTests */ = {
 			isa = PBXGroup;
 			children = (
-				2564AD2C0F5327BB00F57823 /* MenuBrain_Prefix.pch */,
-				2A37F4B0FDCFA73011CA2CEA /* main.m */,
+				5454B4211B6B0E4A00C15DDB /* MenuBrainTests.swift */,
+				5454B41F1B6B0E4A00C15DDB /* Supporting Files */,
 			);
-			name = "Other Sources";
+			path = MenuBrainTests;
 			sourceTree = "<group>";
 		};
-		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
+		5454B41F1B6B0E4A00C15DDB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				542CD64819E88BAF006CAC7E /* Images.xcassets */,
-				54F7025F15A0DBC70095C875 /* brain-menulet_on@2x.png */,
-				54D6320F10A9CE3500E6C734 /* brain-menulet_on.png */,
-				54F7026015A0DBC70095C875 /* brain-menulet@2x.png */,
-				54D6321010A9CE3500E6C734 /* brain-menulet.png */,
-				54E82C4710AF5E8F00BF6AFD /* MenuBrain.icns */,
-				5409EA4310A3CAB10002EFB6 /* MainMenu.xib */,
-				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
-				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
-				1DDD58280DA1D0D100B32029 /* MyDocument.xib */,
+				5454B4201B6B0E4A00C15DDB /* Info.plist */,
 			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
-				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
-			);
-			name = Frameworks;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D15AC270486D014006FF6A4 /* MenuBrain */ = {
+		5454B40A1B6B0E4A00C15DDB /* MenuBrain */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "MenuBrain" */;
+			buildConfigurationList = 5454B4251B6B0E4A00C15DDB /* Build configuration list for PBXNativeTarget "MenuBrain" */;
 			buildPhases = (
-				8D15AC2B0486D014006FF6A4 /* Resources */,
-				8D15AC300486D014006FF6A4 /* Sources */,
-				8D15AC330486D014006FF6A4 /* Frameworks */,
+				5454B4071B6B0E4A00C15DDB /* Sources */,
+				5454B4081B6B0E4A00C15DDB /* Frameworks */,
+				5454B4091B6B0E4A00C15DDB /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = MenuBrain;
-			productInstallPath = "$(HOME)/Applications";
 			productName = MenuBrain;
-			productReference = 8D15AC370486D014006FF6A4 /* MenuBrain.app */;
+			productReference = 5454B40B1B6B0E4A00C15DDB /* MenuBrain.app */;
 			productType = "com.apple.product-type.application";
+		};
+		5454B41A1B6B0E4A00C15DDB /* MenuBrainTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5454B4281B6B0E4A00C15DDB /* Build configuration list for PBXNativeTarget "MenuBrainTests" */;
+			buildPhases = (
+				5454B4171B6B0E4A00C15DDB /* Sources */,
+				5454B4181B6B0E4A00C15DDB /* Frameworks */,
+				5454B4191B6B0E4A00C15DDB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5454B41D1B6B0E4A00C15DDB /* PBXTargetDependency */,
+			);
+			name = MenuBrainTests;
+			productName = MenuBrainTests;
+			productReference = 5454B41B1B6B0E4A00C15DDB /* MenuBrainTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
+		5454B4031B6B0E4A00C15DDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "the iconmaster";
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "John Marstall";
+				TargetAttributes = {
+					5454B40A1B6B0E4A00C15DDB = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					5454B41A1B6B0E4A00C15DDB = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 5454B40A1B6B0E4A00C15DDB;
+					};
+				};
 			};
-			buildConfigurationList = C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "MenuBrain" */;
+			buildConfigurationList = 5454B4061B6B0E4A00C15DDB /* Build configuration list for PBXProject "MenuBrain" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
-			hasScannedForEncodings = 1;
+			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
-			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* MenuBrain */;
+			mainGroup = 5454B4021B6B0E4A00C15DDB;
+			productRefGroup = 5454B40C1B6B0E4A00C15DDB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D15AC270486D014006FF6A4 /* MenuBrain */,
+				5454B40A1B6B0E4A00C15DDB /* MenuBrain */,
+				5454B41A1B6B0E4A00C15DDB /* MenuBrainTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8D15AC2B0486D014006FF6A4 /* Resources */ = {
+		5454B4091B6B0E4A00C15DDB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
-				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
-				1DDD582C0DA1D0D100B32029 /* MyDocument.xib in Resources */,
-				5409EA4510A3CAB10002EFB6 /* MainMenu.xib in Resources */,
-				542CD64919E88BAF006CAC7E /* Images.xcassets in Resources */,
-				54D6321110A9CE3500E6C734 /* brain-menulet_on.png in Resources */,
-				54D6321210A9CE3500E6C734 /* brain-menulet.png in Resources */,
-				54E82C4810AF5E8F00BF6AFD /* MenuBrain.icns in Resources */,
-				54F7026115A0DBC70095C875 /* brain-menulet_on@2x.png in Resources */,
-				54F7026215A0DBC70095C875 /* brain-menulet@2x.png in Resources */,
+				5454B4131B6B0E4A00C15DDB /* Images.xcassets in Resources */,
+				5454B4161B6B0E4A00C15DDB /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5454B4191B6B0E4A00C15DDB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		8D15AC300486D014006FF6A4 /* Sources */ = {
+		5454B4071B6B0E4A00C15DDB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */,
-				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				5409EA3610A3CA210002EFB6 /* MenuBrainAppDelegate.m in Sources */,
-				5409EA3F10A3CA2E0002EFB6 /* AppController.m in Sources */,
-				54BBF00710A6615100080778 /* AXCVHandler.m in Sources */,
+				5454B42E1B6B100D00C15DDB /* AXCVHandler.m in Sources */,
+				5454B4111B6B0E4A00C15DDB /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5454B4171B6B0E4A00C15DDB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5454B4221B6B0E4A00C15DDB /* MenuBrainTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5454B41D1B6B0E4A00C15DDB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5454B40A1B6B0E4A00C15DDB /* MenuBrain */;
+			targetProxy = 5454B41C1B6B0E4A00C15DDB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
-		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
+		5454B4141B6B0E4A00C15DDB /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				089C1660FE840EACC02AAC07 /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		1DDD58280DA1D0D100B32029 /* MyDocument.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1DDD58290DA1D0D100B32029 /* English */,
-			);
-			name = MyDocument.xib;
-			sourceTree = "<group>";
-		};
-		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A37F4BAFDCFA73011CA2CEA /* English */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		5409EA4310A3CAB10002EFB6 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5409EA4410A3CAB10002EFB6 /* English */,
+				5454B4151B6B0E4A00C15DDB /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -272,102 +247,180 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		C05733C808A9546B00998B17 /* Debug */ = {
+		5454B4231B6B0E4A00C15DDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				COMBINE_HIDPI_IMAGES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MenuBrain_Prefix.pch;
-				INFOPLIST_FILE = "MenuBrain-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.iconmaster.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = MenuBrain;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		C05733C908A9546B00998B17 /* Release */ = {
+		5454B4241B6B0E4A00C15DDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				COMBINE_HIDPI_IMAGES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_OBJC_GC = unsupported;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MenuBrain_Prefix.pch;
-				INFOPLIST_FILE = "MenuBrain-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.iconmaster.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = MenuBrain;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
 		};
-		C05733CC08A9546B00998B17 /* Debug */ = {
+		5454B4261B6B0E4A00C15DDB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MenuBrain/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MenuBrain/MenuBrain-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		C05733CD08A9546B00998B17 /* Release */ = {
+		5454B4271B6B0E4A00C15DDB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_ENABLE_OBJC_GC = required;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = Info.plist;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MenuBrain/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				SDKROOT = macosx;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MenuBrain/MenuBrain-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		5454B4291B6B0E4A00C15DDB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MenuBrainTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MenuBrain.app/Contents/MacOS/MenuBrain";
+			};
+			name = Debug;
+		};
+		5454B42A1B6B0E4A00C15DDB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MenuBrainTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MenuBrain.app/Contents/MacOS/MenuBrain";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "MenuBrain" */ = {
+		5454B4061B6B0E4A00C15DDB /* Build configuration list for PBXProject "MenuBrain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C05733C808A9546B00998B17 /* Debug */,
-				C05733C908A9546B00998B17 /* Release */,
+				5454B4231B6B0E4A00C15DDB /* Debug */,
+				5454B4241B6B0E4A00C15DDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "MenuBrain" */ = {
+		5454B4251B6B0E4A00C15DDB /* Build configuration list for PBXNativeTarget "MenuBrain" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C05733CC08A9546B00998B17 /* Debug */,
-				C05733CD08A9546B00998B17 /* Release */,
+				5454B4261B6B0E4A00C15DDB /* Debug */,
+				5454B4271B6B0E4A00C15DDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+		};
+		5454B4281B6B0E4A00C15DDB /* Build configuration list for PBXNativeTarget "MenuBrainTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5454B4291B6B0E4A00C15DDB /* Debug */,
+				5454B42A1B6B0E4A00C15DDB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+	rootObject = 5454B4031B6B0E4A00C15DDB /* Project object */;
 }
