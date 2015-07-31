@@ -11,21 +11,63 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    @IBOutlet weak var brainTable: NSScrollView!
-    @IBOutlet weak var inputField: AXCVHandler!
-    @IBOutlet weak var window: NSWindow!
+    var firstRun: Bool = true
     
-    @IBAction func addString(sender: AnyObject) {
-    }
-
-    @IBAction func removeString(sender: AnyObject) {
-    }
-    
-    var brainArray: NSArray = [""]
+    var brainArray: NSMutableArray = [""]
     var statusBar = NSStatusBar.systemStatusBar()
     var statusBarItem : NSStatusItem = NSStatusItem()
     var brainMenu: NSMenu = NSMenu()
     var brainMenuItem : NSMenuItem = NSMenuItem()
+
+    @IBOutlet weak var brainTable: NSTableView!
+    
+    @IBOutlet weak var inputField: AXCVHandler!
+    @IBOutlet weak var window: NSWindow!
+    
+    @IBAction func addString(sender: AnyObject) {
+        var newString: NSString = inputField.stringValue
+        
+        if (newString.length == 0)
+        {
+            return;
+        }
+        
+        if (firstRun == true) {
+            //need to remove Getting Started item and replace it with the first user item
+            print("Trying to remove Getting Started item")
+            brainMenu.removeItemAtIndex(0)
+            firstRun = false
+        } else {
+            print("App has been launched previously")
+        }
+        
+        brainArray.addObject(newString)
+        print("Added %@", brainArray.lastObject)
+        inputField.stringValue = ""
+        
+        //Add string to status menu
+        
+        [self addMenuBrainMenuItem:newString atIndex:insertionPoint];
+        
+        insertionPoint++;
+        
+        [self refreshAll];
+    }
+
+    @IBAction func removeString(sender: AnyObject) {
+        var row = brainTable.selectedRow
+        if (row == -1) {
+            NSLog(@"selection changed to row %i", row);
+            return;
+        } else {
+            [stringArray removeObjectAtIndex:row];
+            [statusMenu removeItemAtIndex:row];
+            [self refreshAll];
+        }
+        
+        insertionPoint--;
+        
+    }
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // To get service requests to go to the controller...
@@ -413,35 +455,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     
-    - (IBAction)addString:(id)sender {
-    
-    NSString *newString = [inputField stringValue];
-    if ([newString length] == 0)
-    {
-    return;
-    }
-    
-    if (firstRun == YES) {
-    //need to remove Getting Started item
-    NSLog(@"trying to remove Getting Started item");
-    [statusMenu removeItemAtIndex:0];
-    firstRun = NO;
-    } else {
-    NSLog(@"not showing as first run.");
-    }
-    
-    [stringArray addObject:newString];
-    NSLog(@"added %@", [stringArray lastObject]);
-    [inputField setStringValue:@""];
-    
-    //Add string to status menu
-    
-    [self addMenuBrainMenuItem:newString atIndex:insertionPoint];
-    
-    insertionPoint++;
-    
-    [self refreshAll];
-    }
     
     - (void)addMenuBrainMenuItem:(id)newString atIndex:(int)rowIndex {
     
@@ -457,21 +470,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     
-    - (IBAction)removeString:(id)sender {
-    int row = [tableView selectedRow];
-    if (row == -1) {
-    NSLog(@"selection changed to row %i", row);
-    return;
-    } else {
-    [stringArray removeObjectAtIndex:row];
-    [statusMenu removeItemAtIndex:row];
-    [self refreshAll];
-    }
-    
-    insertionPoint--;
-    
-    
-    }
+
     
     //After any edit, update the menu, table view, and save the data
     

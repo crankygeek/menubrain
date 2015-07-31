@@ -157,6 +157,7 @@
 		5454B4031B6B0E4A00C15DDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "John Marstall";
 				TargetAttributes = {
@@ -411,6 +412,7 @@
 				5454B4271B6B0E4A00C15DDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5454B4281B6B0E4A00C15DDB /* Build configuration list for PBXNativeTarget "MenuBrainTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +421,7 @@
 				5454B42A1B6B0E4A00C15DDB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

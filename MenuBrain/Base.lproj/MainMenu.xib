@@ -15,7 +15,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MenuBrain" customModuleProvider="target">
             <connections>
                 <outlet property="addButton" destination="bh8-ZL-gYT" id="sVL-wb-FvL"/>
-                <outlet property="brainTable" destination="flf-2a-0FP" id="oNB-DW-adZ"/>
+                <outlet property="brainTable" destination="jj1-dV-RIf" id="NY3-Pz-je6"/>
                 <outlet property="deleteButton" destination="J0b-zY-vKj" id="zZ7-gQ-vSh"/>
                 <outlet property="inputField" destination="L9Y-hk-Gfj" id="Isl-Xc-zR9"/>
                 <outlet property="window" destination="7hG-uq-yQh" id="Q4W-pr-129"/>
