@@ -11,7 +11,9 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    var stringArray:NSMutableArray = [""]
     var firstRun: Bool = true
+    var insertionPoint = 0
     
     var brainArray: NSMutableArray = [""]
     var statusBar = NSStatusBar.systemStatusBar()
@@ -19,17 +21,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var brainMenu: NSMenu = NSMenu()
     var brainMenuItem : NSMenuItem = NSMenuItem()
 
+    @IBOutlet weak var menuBrainWindow: NSWindow!
     @IBOutlet weak var brainTable: NSTableView!
     
     @IBOutlet weak var inputField: AXCVHandler!
     @IBOutlet weak var window: NSWindow!
     
     @IBAction func addString(sender: AnyObject) {
-        var newString: NSString = inputField.stringValue
+        let newString: NSString = inputField.stringValue
         
         if (newString.length == 0)
         {
-            return;
+            return
         }
         
         if (firstRun == true) {
@@ -47,34 +50,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         //Add string to status menu
         
-        [self addMenuBrainMenuItem:newString atIndex:insertionPoint];
+        self.addMenuBrainMenuItem(newString, rowIndex: insertionPoint)
+
         
-        insertionPoint++;
+        insertionPoint++
         
-        [self refreshAll];
+        self.refreshAll()
     }
 
     @IBAction func removeString(sender: AnyObject) {
         var row = brainTable.selectedRow
         if (row == -1) {
-            NSLog(@"selection changed to row %i", row);
-            return;
+            print("selection changed to row \(row)")
+            return
         } else {
-            [stringArray removeObjectAtIndex:row];
-            [statusMenu removeItemAtIndex:row];
-            [self refreshAll];
+            stringArray.removeObjectAtIndex(row)
+            brainMenu.removeItemAtIndex(row)
+            self.refreshAll()
         }
         
-        insertionPoint--;
+        insertionPoint--
         
-    }
+}
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // To get service requests to go to the controller...
-    }
+    
+    
+func applicationDidFinishLaunching(aNotification: NSNotification) {
+    
+}
 
-    //the copy to pasteboard method
-    func copyFromMenuBrain(sender: AnyObject) {
+//the copy to pasteboard method
+func copyFromMenuBrain(sender: AnyObject) {
     
     //MenuBrain responds differently depending on the data selected. There are 6 possible cases:
     //1. ordinary string
@@ -86,55 +92,58 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     //URLs that can be launched should be. Other strings are copied to pasteboard. Annotations are ignored.
     
     //first, collect entire string that corresponds to menu selection
-    var sentMenuItem: NSMenuItem = sender as! NSMenuItem;
+    var sentMenuItem: NSMenuItem = sender as! NSMenuItem
     var stringIndex = brainMenu.indexOfItem(sentMenuItem)
-    var contents: NSString = brainArray.objectAtIndex(stringIndex)
-    NSLog(@"%@",contents);
-    NSString *contentString = @"";
-    NSString *annotationString = @"";
+    var contents: NSString = brainArray[stringIndex] as! NSString
+    print(contents)
+    var contentString:NSString = ""
+    var annotationString:NSString = ""
+
     
     //test for case 1, simple string
-    if ([self isURL:contents] == NO) {
-    //divide string by colon, if any are present
-    NSArray *stringComponents = [contents componentsSeparatedByString:@":"];
-    if ([stringComponents count] == 1) {
-    //we're done. this is a simple string.
-    NSLog(@"this is a simple string");
-    contentString = contents;
-    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-    [pasteboard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
-    [pasteboard setString:contentString forType:NSStringPboardType];
-    return;
-    }
+    if (!self.isURL(contents)) {
+        //divide string by colon, if any are present
+        var stringComponents = contents.componentsSeparatedByString(":");
+        if (stringComponents.count == 1) {
+            //we're done. this is a simple string.
+            print("this is a simple string")
+            contentString = contents
+            let pasteboard = NSPasteboard.generalPasteboard()
+            pasteboard.clearContents()
+            pasteboard.setString(contentString as String, forType: NSPasteboardTypeString)
+            return
+        }
     }
     
     //test for case 2, string with annotation
-    if ([self isURL:contents] == NO) {
-    //divide string by colon, if any are present
-    NSArray *stringComponents = [contents componentsSeparatedByString:@":"];
-    if ([stringComponents count] >= 2) {
-    contentString = [stringComponents objectAtIndex:1];
+    if (!self.isURL(contents)) {
+        //divide string by colon, if any are present
+        var stringComponents = contents.componentsSeparatedByString(":")
+        if (stringComponents.count >= 2) {
+        contentString = stringComponents[1]
     
-    //rejoin non-annotation content divided by colons
-    if ([stringComponents count] > 2) {
-				int i;
-				for (i=2;i<[stringComponents count];i++) {
-    contentString = [NSString stringWithFormat:@"%@:%@", contentString, [stringComponents objectAtIndex:i]];
-				}
-    }
+        //rejoin non-annotation content divided by colons
+        if (stringComponents.count > 2) {
+            for var i = 2; i < stringComponents.count; i++ {
+                contentString = "\(contentString):\(stringComponents[i])"
+            }
+        }
     
     //check contentString for URL
     
     //shave leading space
-    if ([contentString hasPrefix:@" "]) {
-				contentString = [contentString substringWithRange:NSMakeRange(1, [contentString length] - 1)];
+    let emptyPrefix = " "
+    if (contentString.hasPrefix(emptyPrefix)) {
+        print("shaving empty space")
+        contentString = contentString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        print("shaved string is \(contentString)")
     }
-    if ([self isURL:contentString] == NO) {
-				NSLog(@"this is a simple string with annotation");
-				NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-				[pasteboard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
-				[pasteboard setString:contentString forType:NSStringPboardType];
-				return;
+    if (!self.isURL(contentString)) {
+        print("this is a simple string with annotation")
+        let pasteboard = NSPasteboard.generalPasteboard()
+        pasteboard.clearContents()
+        pasteboard.setString(contentString as String, forType: NSPasteboardTypeString)
+        return
     }
     
     }
@@ -145,95 +154,104 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     //test for case 4, non-launching URL
-    if ([self isURL:contents] == YES) {
-    if ([contents hasPrefix:@"ftp://"] == YES) {
-    NSLog(@"this is a non-launching URL");
-    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-    [pasteboard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
-    [pasteboard setString:contents forType:NSStringPboardType];
-    return;
-    }
+    if (self.isURL(contents)) {
+        let ftpPrefix = "ftp://"
+        if (contentString.hasPrefix(ftpPrefix)) {
+            print("this is a non-launching URL")
+            let pasteboard = NSPasteboard.generalPasteboard()
+            pasteboard.clearContents()
+            pasteboard.setString(contentString as String, forType: NSPasteboardTypeString)
+            return
+        }
     }
     
     //test for case 5, non-launching URL with annotation
-    if ([self isURL:contents] == YES) {
+    if (self.isURL(contents)) {
     //divide string by colon, if any are present
-    NSArray *stringComponents = [contents componentsSeparatedByString:@":"];
-    if ([stringComponents count] >= 2) {
-    contentString = [stringComponents objectAtIndex:1];
+    var stringComponents = contents.componentsSeparatedByString(":")
+    if (stringComponents.count >= 2) {
+        contentString = stringComponents[1]
     
-    //rejoin non-annotation content divided by colons
-    if ([stringComponents count] > 2) {
-				int i;
-				for (i=2;i<[stringComponents count];i++) {
-    contentString = [NSString stringWithFormat:@"%@:%@", contentString, [stringComponents objectAtIndex:i]];
-				}
-    }
+        //rejoin non-annotation content divided by colons
+        if (stringComponents.count > 2) {
+            for var i = 2; i < stringComponents.count; i++ {
+                contentString = "\(contentString):\(stringComponents[i])"
+            }
+        }
     
     }
     
     //check contentString for URL
     
     //shave leading space
-    if ([contentString hasPrefix:@" "]) {
-    contentString = [contentString substringWithRange:NSMakeRange(1, [contentString length] - 1)];
+    let emptyPrefix = " "
+    if (contentString.hasPrefix(emptyPrefix)) {
+        print("shaving empty space")
+        contentString = contentString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        print("shaved string is \(contentString)")
     }
-    if ([self isURL:contentString] == YES) {
+        
+    if (self.isURL(contentString)) {
     //check for FTP address
-    if ([contentString hasPrefix:@"ftp://"]) {
-				NSLog(@"this is an FTP address with annotation");
-				NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-				[pasteboard declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
-				[pasteboard setString:contentString forType:NSStringPboardType];
-				return;
-    } else {
-				[self sendURL:contentString];
-				return;
-    }
+        let ftpPrefix = "ftp://"
+        if (contentString.hasPrefix(ftpPrefix)) {
+            print("this is an FTP address with annoation")
+            let pasteboard = NSPasteboard.generalPasteboard()
+            pasteboard.clearContents()
+            pasteboard.setString(contentString as String, forType: NSPasteboardTypeString)
+            return
+        } else {
+            self.sendURL(contentString)
+            return
+        }
     
     }
     }
     
     //test for case 6, web URL with annotation
-    if ([self isURL:contents] == YES) {
+    if (self.isURL(contents)) {
     //divide string by colon, if any are present
-    NSArray *stringComponents = [contents componentsSeparatedByString:@":"];
-    if ([stringComponents count] >= 2) {
-    contentString = [stringComponents objectAtIndex:1];
+        var stringComponents = contents.componentsSeparatedByString(":")
+        if (stringComponents.count >= 2) {
+            contentString = stringComponents[1]
     
-    //rejoin non-annotation content divided by colons
-    if ([stringComponents count] > 2) {
-				int i;
-				for (i=2;i<[stringComponents count];i++) {
-    contentString = [NSString stringWithFormat:@"%@:%@", contentString, [stringComponents objectAtIndex:i]];
-				}
-    }
+            //rejoin non-annotation content divided by colons
+            if (stringComponents.count > 2) {
+                for var i = 2; i < stringComponents.count; i++ {
+                    contentString = "\(contentString):\(stringComponents[i])"
+                }
+            }
     
     }
     
     //check contentString for URL
     
-    //shave leading space
-    if ([contentString hasPrefix:@" "]) {
-    contentString = [contentString substringWithRange:NSMakeRange(1, [contentString length] - 1)];
+    ///shave leading space
+    let emptyPrefix = " "
+    if (contentString.hasPrefix(emptyPrefix)) {
+        print("shaving empty space")
+        contentString = contentString.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+        print("shaved string is \(contentString)")
     }
     
-    if ([self isURL:contentString] == YES) {
-    //rule out FTP addresses
-    if ([contentString hasPrefix:@"ftp://"] == NO) {
-				[self sendURL:contentString];
-				return;
-    }
+    if (self.isURL(contentString)) {
+        //rule out FTP addresses
+        let ftpPrefix = "ftp://"
+        if (!contentString.hasPrefix(ftpPrefix)) {
+            self.sendURL(contentString)
+            return
+        }
     }
     }
     
     //that leaves case 3, simple web URL
-    if ([self isURL:contents] == YES) {
-    //rule out FTP addresses
-    if ([contents hasPrefix:@"ftp://"] == NO) {
-    [self sendURL:contents];
-    return;
-    }
+    if (self.isURL(contents)) {
+        //rule out FTP addresses
+        let ftpPrefix = "ftp://"
+        if (!contentString.hasPrefix(ftpPrefix)) {
+            self.sendURL(contentString)
+            return
+        }
     
     }
     
@@ -241,232 +259,213 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     }
-    
-    - (BOOL)isURL:(id)contents {
+
+func isURL(contents:AnyObject) -> Bool {
+
     //account for URLs containing directories
-    NSArray *stringComponents = [contents componentsSeparatedByString:@"/"];
-    NSString *stringToCheck = @"";
-    stringToCheck = [stringComponents objectAtIndex:0];
-    if ([self isURLStringCheck:stringToCheck] == YES) {
-    return YES;
+    var stringComponents = contents.componentsSeparatedByString("/")
+    var stringToCheck = ""
+    stringToCheck = stringComponents[0]
+    if (self.isURLStringCheck(stringToCheck)) {
+    return true
     }
-    if ([stringComponents count] >= 2) {
-    stringToCheck = [stringComponents objectAtIndex:1];
-    if ([self isURLStringCheck:stringToCheck] == YES) {
-    return YES;
-    }
-    
-    }
-    if ([stringComponents count] >= 3) {
-    stringToCheck = [stringComponents objectAtIndex:2];
-    if ([self isURLStringCheck:stringToCheck] == YES) {
-    return YES;
+    if (stringComponents.count >= 2) {
+    stringToCheck = stringComponents[1]
+    if self.isURLStringCheck(stringToCheck) == true {
+        return true
     }
     
     }
-    return NO;
-    
-    
+    if (stringComponents.count >= 3) {
+    stringToCheck = stringComponents[2]
+    if self.isURLStringCheck(stringToCheck) == true {
+        return true
     }
     
-    - (void)sendURL:(id)contents {
-    
-    NSLog(@"sendURL received: %@", contents);
-    
-    if ([contents hasPrefix:@"//"]) {
-    contents = [contents substringWithRange:NSMakeRange(2, [contents length] - 2)];
     }
-    if ([contents hasPrefix:@"/"]) {
-    contents = [contents substringWithRange:NSMakeRange(1, [contents length] - 1)];
+    return false
+    
+}
+
+func sendURL(var contents:NSString) {
+
+    print("sendURL received: \(contents)")
+    
+    if contents.hasPrefix("//") {
+        contents = contents.substringWithRange(NSMakeRange(2, contents.length - 2))
+    }
+    if contents.hasPrefix("/") {
+        contents = contents.substringWithRange(NSMakeRange(1, contents.length - 1))
     }
     
-    if ([contents hasPrefix:@"http:///"]) {
-    contents = [contents substringWithRange:NSMakeRange(8, [contents length] - 8)];
+    if contents.hasPrefix("//") {
+        contents = contents.substringWithRange(NSMakeRange(8, contents.length - 8))
     }
     
-    NSURL *URL = nil;
+    var URL:NSURL = NSURL(string: "")!
     
-    if ([contents hasPrefix:@"http://"]) {
-    NSLog(@"this is a web URL: %@", contents);
-    URL = [NSURL URLWithString:contents];
+    if contents.hasPrefix("http://") {
+        print("this is a web URL: \(contents)")
+        URL = NSURL(string:contents as String)!
     } else {
-    NSString *validURL = [NSString stringWithFormat:@"http://%@",contents];
-    NSLog(@"made valid URL: %@", validURL);
-    URL = [NSURL URLWithString:validURL];
+        var validURL:NSString = "http://\(contents)"
+        print("made valid URL\(validURL)")
+        URL = NSURL(string: validURL as String)!
+
     }
     
-    BOOL optionKeyIsDown = ([NSEvent modifierFlags] & NSAlternateKeyMask) == NSAlternateKeyMask;
-    if (optionKeyIsDown)
-    {
-    // Copy to clipboard
-    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
-    [pasteboard declareTypes:[NSArray arrayWithObjects:NSStringPboardType, NSURLPboardType, nil] owner:nil];
-    [pasteboard setString:[URL absoluteString] forType:NSStringPboardType];
-    [pasteboard setString:[URL absoluteString] forType:NSURLPboardType];
+    if NSEventModifierFlags.contains(.CommandKeyMask) {
+    
+    //if (optionKeyIsDown) {
+    
+        // Copy to clipboard
+        let pasteboard = NSPasteboard.generalPasteboard()
+        pasteboard.clearContents()
+        pasteboard.setString(URL as String, forType: NSPasteboardTypeString)
     }
     else {
     // Send the url
     [[NSWorkspace sharedWorkspace] openURL:URL];
     }
-    }
+}
     
     
-    - (BOOL)isURLStringCheck:(id)contents {
+func isURLStringCheck(contents: NSString) -> Bool {
     //first, test if it's an email address
-    NSString *emailRegEx =
-    @"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
-    @"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"
-    @"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"
-    @"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"
-    @"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"
-    @"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
-    @"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+    let emailRegEx =
+    "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
+    "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"
+    "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"
+    "z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"
+    "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"
+    "9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
+    "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
     
-    NSPredicate *regExPredicate =
-    [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegEx];
+    let regExPredicate:NSPredicate = NSPredicate(format: "self matches %@", emailRegEx)
     
-    BOOL isEmailAddress = [regExPredicate evaluateWithObject:contents];
+    let isEmailAddress:Bool = regExPredicate.evaluateWithObject(contents)
     
-    if (isEmailAddress == YES) {
-    return NO;
-    //next, test for common URL prefixes and TLDs
-    } else if ([contents hasPrefix:@"http://"]) {
-    return YES;
-    } else if ([contents hasPrefix:@"https://"]) {
-    return YES;
-    } else if ([contents hasPrefix:@"ftp://"]) {
-    return YES;
-    } else if ([contents hasPrefix:@"www."]) {
-    return YES;
-    } else if ([contents hasSuffix:@".com"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".edu"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".org"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".net"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".biz"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".info"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".name"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".pro"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".gov"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".mil"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".co.uk"]) {
-    return YES;
-    } else if ([contents hasSuffix:@".us"]) {
-    return YES;
-    
-    
-    
-    
+    if (isEmailAddress) {
+        return false
+        //next, test for common URL prefixes and TLDs
+    } else if (contents.hasPrefix("http://")) {
+        return true
+    } else if (contents.hasPrefix("https://")) {
+        return true
+    } else if (contents.hasPrefix("ftp://")) {
+        return true
+    } else if (contents.hasPrefix("www.")) {
+        return true
+    } else if (contents.hasSuffix(".com")) {
+        return true
+    } else if (contents.hasSuffix(".edu")) {
+        return true
+    } else if (contents.hasSuffix(".org")) {
+        return true
+    } else if (contents.hasSuffix(".net")) {
+        return true
+    } else if (contents.hasSuffix(".biz")) {
+        return true
+    } else if (contents.hasSuffix(".info")) {
+        return true
+    } else if (contents.hasSuffix(".name")) {
+        return true
+    } else if (contents.hasSuffix(".pro")) {
+        return true
+    } else if (contents.hasSuffix(".gov")) {
+        return true
+    } else if (contents.hasSuffix(".mil")) {
+        return true
+    } else if (contents.hasSuffix(".co.uk")) {
+        return true
+    } else if (contents.hasSuffix(".us")) {
+        return true
     } else {
-    return NO;
+        return false
     }
-    }
+}
     
     
-    - (void)awakeFromNib
-    {
-    insertionPoint = 0;
-    [inputField setStringValue:@""];
+override func awakeFromNib() {
+    insertionPoint = 0
+    self.inputField.stringValue = ""
     
     //Create the NSStatusBar and set its length
-    statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
+    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
     
     //Sets the images in our NSStatusItem
-    [statusItem setImage:[NSImage imageNamed:@"menubarIcon"]];
-    [statusItem setAlternateImage:[NSImage imageNamed:@"menubarIconActive"]];
+    statusItem.image = NSImage(named: "menubarIcon")
+    statusItem.alternateImage = NSImage(named: "menubarIconActive")
+
     
     //Tells the NSStatusItem what menu to load
-    [statusItem setMenu:statusMenu];
+    statusItem.menu = brainMenu
     //Sets the tooptip for our item
-    [statusItem setToolTip:@"MenuBrain"];
+    statusItem.toolTip = "MenuBrain"
     //Enables highlighting
-    [statusItem setHighlightMode:YES];
+    statusItem.highlightMode = true
     
-    
-    [tableView registerForDraggedTypes:
-    
-    [NSArray arrayWithObject:GifInfoPasteBoard] ];
+    //Register for drag and drop
+    var registeredTypes:[String] = [NSStringPboardType]
+    self.brainTable.registerForDraggedTypes(registeredTypes)
     
     //Add the Edit... item
-    
-    NSMenuItem *editMenuItem = [[NSMenuItem alloc] initWithTitle:@"Edit..."
-    action:@selector (showEditWindow)
-    keyEquivalent:@""];
-    [statusMenu addItem:editMenuItem];
-    editMenuItem.target = self;
-    [editMenuItem setEnabled:YES];
+    let editMenuItem = NSMenuItem(title: "Edit", action: Selector(showEditWindow()), keyEquivalent: "")
+    brainMenu.addItem(editMenuItem)
+    editMenuItem.target = self
+    editMenuItem.enabled = true
     
     //Add the Quit MenuBrain item
-    
-    NSMenuItem *quitMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quit MenuBrain"
-    action:@selector (terminate:)
-    keyEquivalent:@""];
-    [statusMenu addItem:quitMenuItem];
-    quitMenuItem.target = NSApp;
-    [quitMenuItem setEnabled:YES];
+    let quitMenuItem = NSMenuItem(title: "Quit MenuBrain", action: Selector("Quit:"), keyEquivalent: "")
+    brainMenu.addItem(quitMenuItem)
+    quitMenuItem.target = NSApp
+    quitMenuItem.enabled = true
     
     //Determine if a MenuBrain file already exists
-    
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *folder = @"~/Library/Application Support/MenuBrain/";
-    folder = [folder stringByExpandingTildeInPath];
-    NSString *fileName = @"MenuBrain.menubraindata";
-    NSString *filePath = [folder stringByAppendingPathComponent: fileName];
-    if ([fileManager fileExistsAtPath: filePath] == YES) {
-    NSLog(@"Looks like there's a datafile to load.");
-    firstRun = NO;
-    [self loadDataFromDisk];
-    [self rebuildMenuAfterLoad];
+    let fileManager = NSFileManager.defaultManager()
+    var folder: NSString = "~/Library/Application Support/MenuBrain/"
+    folder = folder.stringByExpandingTildeInPath
+    let fileName = "MenuBrain.menubraindata"
+    let filePath = folder.stringByAppendingPathComponent(fileName as String)
+    if fileManager.fileExistsAtPath(filePath) {
+        print("Looks like there's a datafile to load.")
+        firstRun = false
+        self.loadDataFromDisk()
+        self.rebuildMenuAfterLoad()
     } else {
-    NSLog(@"No datafile found.");
-    firstRun = YES;
-    //If the user is new to MenuBrain, give her a little hint
-    NSLog(@"trying to rebuild Get Started menu item.");
-    NSMenuItem *getStartedMenuItem = [[NSMenuItem alloc] initWithTitle:@"Click on Edit... to get started" action:NULL keyEquivalent:@""];
-    
-    [statusMenu insertItem:getStartedMenuItem
-    atIndex:0];
-    getStartedMenuItem.target = self;
-    [getStartedMenuItem setEnabled:NO];
+        print("No datafile found.")
+        //firstRun = true
+        //If the user is new to MenuBrain, give her a little hint
+        print("trying to rebuild Get Started menu item.")
+        let getStartedMenuItem = NSMenuItem(title: "Click on Edit... to get started", action: Selector(), keyEquivalent: "")
+        brainMenu.insertItem(getStartedMenuItem, atIndex: 0)
+        getStartedMenuItem.target = self
+        getStartedMenuItem.enabled = false
     }
     
     
-    [self refreshAll];
+    self.refreshAll()
     
     }
     
-    - (void)showEditWindow
-    {
-    [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
-    [menuBrainWindow makeKeyAndOrderFront:self];
-    [inputField selectText:self];
-    [[inputField currentEditor] setSelectedRange:NSMakeRange([[inputField stringValue] length], 0)];
+func showEditWindow() {
+    NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+    self.menuBrainWindow.makeKeyAndOrderFront(self)
+    self.inputField.selectText(self)
+    self.inputField.currentEditor()?.selectedRange = NSMakeRange(0, self.inputField.stringValue.characters.count)
     
     }
     
     
-    
-    
-    - (void)addMenuBrainMenuItem:(id)newString atIndex:(int)rowIndex {
-    
-    NSString *menuString = [self truncateMenuTitle:newString];
-    NSMenuItem *newMenuItem = [[NSMenuItem alloc]initWithTitle:menuString
-    action:@selector (copy:)
-    keyEquivalent:@""];
-    [statusMenu insertItem:newMenuItem
-    atIndex:rowIndex];
-    newMenuItem.target = self;
-    [newMenuItem setEnabled:YES];
-    }
+func addMenuBrainMenuItem(newString:NSString, rowIndex:Int) {
+        
+    var menuString:NSString = self.truncateMenuTitle(newString)
+    var newMenuItem = NSMenuItem(title: menuString as String, action: Selector("copy:"), keyEquivalent: "")
+    brainMenu.insertItem(newMenuItem, atIndex:rowIndex)
+
+    newMenuItem.target = self
+    newMenuItem.enabled = true
+}
     
     
     
@@ -474,48 +473,48 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     //After any edit, update the menu, table view, and save the data
     
-    - (void)refreshAll {
-    [self saveDataToDisk];
-    [tableView reloadData];
+func refreshAll() {
+    self.saveDataToDisk()
+    brainTable.reloadData()
     }
     
     //Weird code that makes the table view work with NSMutableArray
     
-    - (int)numberOfRowsInTableView:(NSTableView *)tv
-    {
-    return [stringArray count];
-    }
+//    - (int)numberOfRowsInTableView:(NSTableView *)tv
+//    {
+//    return [stringArray count];
+//    }
+//    
+//    - (id)tableView:(NSTableView *)tv
+//    objectValueForTableColumn:(NSTableColumn *)tableColumn
+//    row:(int)row
+//    {
+//    NSString *v = [stringArray objectAtIndex:row];
+//    return v;
+//    }
+//    
+//    
+//    
+//    - (void)tableView:(NSTableView *)aTableView
+//    setObjectValue:(id)anObject
+//    forTableColumn:(NSTableColumn *)aTableColumn
+//    row:(NSInteger)rowIndex
+//    {
+//    
+//    [stringArray replaceObjectAtIndex:rowIndex withObject:anObject];
+//    [brainMenu removeItemAtIndex:rowIndex];
+//    
+//    [self addMenuBrainMenuItem:anObject atIndex:rowIndex];
+//    
+//    
+//    [self refreshAll];
+//    
+//    }
     
-    - (id)tableView:(NSTableView *)tv
-    objectValueForTableColumn:(NSTableColumn *)tableColumn
-    row:(int)row
-    {
-    NSString *v = [stringArray objectAtIndex:row];
-    return v;
-    }
     
-    
-    
-    - (void)tableView:(NSTableView *)aTableView
-    setObjectValue:(id)anObject
-    forTableColumn:(NSTableColumn *)aTableColumn
-    row:(NSInteger)rowIndex
-    {
-    
-    [stringArray replaceObjectAtIndex:rowIndex withObject:anObject];
-    [statusMenu removeItemAtIndex:rowIndex];
-    
-    [self addMenuBrainMenuItem:anObject atIndex:rowIndex];
-    
-    
-    [self refreshAll];
-    
-    }
-    
-    
-    - (void)tableViewSelectionDidChange:(NSNotification *)notification
-    {
-    int row = [tableView selectedRow];
+func tableViewSelectionDidChange(notification: NSNotification) {
+    let row:Int = brainTable.selectedRow
+
     if (row == -1) {
     NSLog(@"selection changed to row %i", row);
     return;
@@ -565,7 +564,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     if (newPosition < [stringArray count] - 1) {
     [stringArray removeObjectAtIndex:rowToMove];
     [stringArray insertObject:object atIndex:newPosition];
-    [statusMenu removeItemAtIndex:rowToMove];
+    [brainMenu removeItemAtIndex:rowToMove];
     
     [self addMenuBrainMenuItem:object atIndex:newPosition];
     
@@ -573,7 +572,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     } else {
     [stringArray removeObjectAtIndex:rowToMove];
     [stringArray addObject:object];
-    [statusMenu removeItemAtIndex:rowToMove];
+    [brainMenu removeItemAtIndex:rowToMove];
     
     [self addMenuBrainMenuItem:object atIndex:[stringArray count] - 1];
     
@@ -601,16 +600,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     - (void) encodeWithCoder: (NSCoder *)coder
     {
     [coder encodeObject:stringArray forKey:@"menubraindata"];
-    }
-    
-    
-    - (id) initWithCoder: (NSCoder *)coder
-    {
-    if (self = [super init]) {
-    stringArray = [[NSMutableArray alloc] init];
-    //stringArray = [coder decodeObjectForKey:@"menubraindata"];
-    }
-    return self;
     }
     
     - (void)saveDataToDisk {
